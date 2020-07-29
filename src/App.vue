@@ -17,7 +17,6 @@ export default {
   data(){
     return{
       todos:[],
-      errors:[]
     };
   },
 
@@ -25,9 +24,6 @@ export default {
     axios.get(`https://jsonplaceholder.typicode.com/todos/`)
          .then(res=>{
           this.todos = res.data
-         })
-         .catch(e=>{
-          this.errors.push(e);
          })
   }
 }
