@@ -1,17 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Card :todos="todos"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios  from "axios";
+import Card from './components/Card.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Card
+  },
+
+  data(){
+    return{
+      todos:[],
+      errors:[]
+    };
+  },
+
+  created(){
+    axios.get(`https://jsonplaceholder.typicode.com/todos/`)
+         .then(res=>{
+          this.todos = res.data
+         })
+         .catch(e=>{
+          this.errors.push(e);
+         })
   }
 }
 </script>
